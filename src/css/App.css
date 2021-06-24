@@ -1,11 +1,66 @@
-.App {
-  text-align: center;
+.container {
+  height: 70vh;
 }
 
-.App-logo {
+main {
+  height: 100%;
+  border: black 2px solid;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-gap: 15px;
+}
+
+.price-container {
+  border: black 2px solid;
+}
+
+.num-slt-container {
+  border: black 2px solid;
+  height: 80%;
+  display: grid;
+  grid-template-rows: 90% 10%;
+}
+
+.num-container {
+  padding-top: 10px;
+  border: black 2px solid;
+  display: grid;
+  grid-template-columns: repeat(5, 18%);
+  grid-template-rows: repeat(4, 22%);
+  justify-content: center;
+  gap: 10px 10px;
+}
+
+.num-btn-container {
+  margin-top: 10px;
+  border: black 2px solid;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.num {
+  border: red 2px dotted;
+  background-color: burlywood;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-dsp-container {
+  border: black 2px solid;
+}
+
+/* default styles */
+/* .App {
+  text-align: center;
+} */
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -13,7 +68,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,11 +77,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
 @keyframes App-logo-spin {
   from {
