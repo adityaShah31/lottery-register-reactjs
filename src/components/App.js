@@ -33,13 +33,52 @@ const App = () => {
   };
 
   const toggleNumberState = (clickedNum) => {
-    allNumbers[clickedNum.value - 1].highlight = !allNumbers[clickedNum.value - 1].highlight;
+    //checks if selected numbers are at max 5 numbers, while allowing to deselect them
+    //if the highlight property of the clicked number was true, we know that the user wants to
+    //deselect the number, hence we allow him to do so, and if highlight is false, we know that
+    //the user wants to select a number, at this point, if there are already 5 numbers selected,
+    //the execution goes in the else block and gives an alert
+    if (activeNumbers.length < 5 || clickedNum.highlight === true) {
+      //the numbers are contiguous & ordered and hence can be used as indices. Subtracting 1 from the element essentially gives us it's index in the array.
+      allNumbers[clickedNum.value - 1].highlight = !allNumbers[clickedNum.value - 1].highlight;
+      setHighlightedNumbers(allNumbers);
 
-    setHighlightedNumbers(allNumbers);
+      let finalNumbers = allNumbers.filter((num) => num.highlight === true);
+      setActiveNumbers(finalNumbers);
+    } else {
+      alert('Sorry, you can select only 5 numbers!');
+    }
+  };
 
-    let finalNumbers = allNumbers.filter((num) => num.highlight === true);
-    console.log(finalNumbers);
-    setActiveNumbers(finalNumbers);
+  const clearSelection = () => {
+    setHighlightedNumbers(numArray);
+    setActiveNumbers([]);
+  };
+
+  const randomizeSelection = () => {
+    //for if the user presses random button multiple times
+    //clearSelection();  //this line does not work as React overrides multiple 'setState()' calls with just the latest one, instead of calling them synchronously :(
+
+    //Logic for randomNumArray to consists of 5 DISTINCT / NON-REPEATING numbers
+    var randomNumArray = [];
+    while (randomNumArray.length < 5) {
+      var randNum = Math.floor(Math.random() * 20) + 1; //Range: 1 to 20
+      if (randomNumArray.indexOf(randNum) === -1) randomNumArray.push(randNum);
+    }
+
+    let finalNumbers = allNumbers;
+    //setting highlight property of selected numbers
+    for (let i = 0; i < randomNumArray.length; i++) {
+      let index = randomNumArray[i];
+
+      finalNumbers[index - 1].highlight = true;
+    }
+
+    //filtering highlighted numbers to pass to Side display
+    let sideDisplayNumbers = finalNumbers.filter((num) => num.highlight === true);
+
+    setHighlightedNumbers(finalNumbers);
+    setActiveNumbers(sideDisplayNumbers);
   };
 
   return (
@@ -48,7 +87,13 @@ const App = () => {
       <Header />
       <main>
         <PriceInput onPriceClick={addPriceToTotal} />
-        <NumberSelector onNumberClick={toggleNumberState} numbers={allNumbers} cashButtonState={isButtonActive} />
+        <NumberSelector
+          numbers={allNumbers}
+          onNumberClick={toggleNumberState}
+          onClearClick={clearSelection}
+          onRandomClick={randomizeSelection}
+          cashButtonState={isButtonActive}
+        />
         <SideDisplay displayNumbersArray={activeNumbers} totalAmount={total} />
       </main>
     </div>
