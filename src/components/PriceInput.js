@@ -6,7 +6,7 @@ const PriceInput = (props) => {
 
   return (
     <div className='price-container'>
-      <h1>Select Price here:</h1>
+      <h3>Select Price here:</h3>
       <div className='price-btn-container'>
         {priceArray.map((price) => (
           <button

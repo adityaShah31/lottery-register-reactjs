@@ -20,16 +20,23 @@ const App = () => {
   const [allNumbers, setHighlightedNumbers] = useState(numArray);
   const [activeNumbers, setActiveNumbers] = useState([]);
   const [total, setTotalAmount] = useState(0.0);
-  const [modal, setModal] = useState({
-    msg: '',
-    visible: false,
+  const [modal, setModalDisplay] = useState({
+    message: '',
+    hidden: true,
   });
   const [isButtonActive, setCashButton] = useState(false);
 
   const addPriceToTotal = (price) => {
-    let newTotal = total + price;
+    if (activeNumbers.length !== 5) {
+      setModalDisplay({
+        message: 'You need to select 5 numbers before you can select price!',
+        hidden: false,
+      });
+    } else {
+      let newTotal = total + price;
 
-    setTotalAmount(newTotal);
+      setTotalAmount(newTotal);
+    }
   };
 
   const toggleNumberState = (clickedNum) => {
@@ -46,18 +53,23 @@ const App = () => {
       let finalNumbers = allNumbers.filter((num) => num.highlight === true);
       setActiveNumbers(finalNumbers);
     } else {
-      alert('Sorry, you can select only 5 numbers!');
+      setModalDisplay({
+        message: 'Sorry, you can select only 5 numbers!',
+        hidden: false,
+      });
+      // alert('Sorry, you can select only 5 numbers!');
     }
   };
 
   const clearSelection = () => {
     setHighlightedNumbers(numArray);
     setActiveNumbers([]);
+    setTotalAmount(0.0);
   };
 
   const randomizeSelection = () => {
     //for if the user presses random button multiple times
-    //clearSelection();  //this line does not work as React overrides multiple 'setState()' calls with just the latest one, instead of calling them synchronously :(
+    //clearSelection();  //this line does not work as React overrides multiple 'setState()' calls for same state, with just the latest one, instead of calling them all synchronously one after the other :(
 
     //Logic for randomNumArray to consists of 5 DISTINCT / NON-REPEATING numbers
     var randomNumArray = [];
@@ -81,9 +93,16 @@ const App = () => {
     setActiveNumbers(sideDisplayNumbers);
   };
 
+  const dismissModal = () => {
+    setModalDisplay({
+      message: '',
+      hidden: true,
+    });
+  };
+
   return (
     <div className='container'>
-      <Modal modalObject={modal} />
+      <Modal modalObject={modal} onDismiss={dismissModal} />
       <Header />
       <main>
         <PriceInput onPriceClick={addPriceToTotal} />
