@@ -40,12 +40,14 @@ main {
 }
 
 .num {
-  border: red 2px dotted;
   background-color: burlywood;
-
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.num-border {
+  border: red 5px solid;
 }
 
 .side-dsp-container {

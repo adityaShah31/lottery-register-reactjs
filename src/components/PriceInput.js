@@ -1,18 +1,28 @@
 import React from 'react';
 import '../css/App.css';
 
-function PriceInput() {
+const PriceInput = (props) => {
+  const priceArray = [1, 5, 10, 20];
+
   return (
     <div className='price-container'>
       <h1>Select Price here:</h1>
       <div className='price-btn-container'>
-        <button>$1</button>
-        <button>$5</button>
-        <button>$10</button>
-        <button>$20</button>
+        {priceArray.map((price) => (
+          <button
+            id={price}
+            key={price}
+            onClick={() => {
+              props.onPriceClick(price);
+            }}
+            className='price-btn'
+          >
+            ${price}
+          </button>
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default PriceInput;

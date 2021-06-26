@@ -1,18 +1,20 @@
 import React from 'react';
 import '../css/App.css';
 
-let numbers = [];
-for (let i = 1; i <= 20; i++) {
-  numbers.push(i);
-}
-
-function NumberSelector() {
+const NumberSelector = (props) => {
   return (
     <div className='num-slt-container'>
       <div className='num-container'>
-        {numbers.map((num) => (
-          <div key={num} className='num'>
-            {num}
+        {props.numbers.map((num) => (
+          <div
+            id={num.value}
+            key={num.value}
+            onClick={() => {
+              props.onNumberClick(num);
+            }}
+            className={num.highlight ? 'num num-border' : 'num'}
+          >
+            {num.value}
           </div>
         ))}
       </div>
@@ -22,6 +24,6 @@ function NumberSelector() {
       </div>
     </div>
   );
-}
+};
 
 export default NumberSelector;
