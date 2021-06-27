@@ -11,7 +11,7 @@ const SideDisplay = (props) => {
         ))}
       </div>
       <div>
-        <h4>Total: ${props.totalAmount}</h4>
+        <h2>Total: ${props.totalAmount}</h2>
       </div>
     </div>
   );

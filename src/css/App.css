@@ -5,18 +5,14 @@
 
 main {
   height: 100%;
-  border: black 2px solid;
+  /* border: black 2px solid; */
   display: grid;
   grid-template-columns: 20% 50% 20%;
   grid-gap: 15px;
 }
 
-.price-container {
-  border: black 2px solid;
-}
-
 .num-slt-container {
-  border: black 2px solid;
+  /* border: black 2px solid; */
   height: 80%;
   display: grid;
   grid-template-rows: 90% 10%;
@@ -33,26 +29,53 @@ main {
 }
 
 .num-btn-container {
-  margin-top: 10px;
-  border: black 2px solid;
+  margin-top: 100px;
+  /* border: black 2px solid; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
+.num-btn {
+  border-radius: 2em;
+  display: inline-block;
+  padding: 15px 50px;
+  margin: 0 0.1em 0.1em 0;
+  border: 2px solid white;
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+  font-size: large;
+  transition: all 0.2s;
+}
+
+.num-btn:hover {
+  transform: scale(1.1, 1.1);
+}
+
 .num {
-  background-color: burlywood;
+  background-color: rgb(222, 195, 135);
+  font-size: large;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.1s;
+}
+
+.num:hover {
+  transform: scale(0.9, 0.9);
 }
 
 .num-border {
-  border: red 5px solid;
+  border: rgb(0, 0, 0) 5px solid;
 }
 
 .side-dsp-container {
   border: black 2px solid;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .modal-container {
@@ -79,6 +102,46 @@ main {
   display: none;
 }
 
+.price-btn-container {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+
+  justify-content: space-evenly;
+  align-self: center;
+}
+
+.price-container {
+  border: black 2px solid;
+}
+
+.price-btn {
+  background-color: #04c062;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.price-btn:hover {
+  transform: scale(0.9, 0.9);
+}
+
+.cashout-btn {
+  background-color: green;
+}
+
+.clear-btn,
+.rndm-btn {
+  background-color: red;
+}
 /* default styles */
 /* .App {
   text-align: center;

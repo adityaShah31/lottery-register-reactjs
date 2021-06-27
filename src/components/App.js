@@ -9,7 +9,7 @@ import SideDisplay from './SideDisplay';
 import { useState, useEffect } from 'react';
 
 const App = () => {
-  let numArray = [];
+  const numArray = [];
   for (let i = 1; i <= 20; i++) {
     numArray.push({
       value: i,
@@ -24,7 +24,6 @@ const App = () => {
     message: '',
     hidden: true,
   });
-  const [isButtonActive, setCashButton] = useState(false);
 
   const addPriceToTotal = (price) => {
     if (activeNumbers.length !== 5) {
@@ -68,9 +67,6 @@ const App = () => {
   };
 
   const randomizeSelection = () => {
-    //for if the user presses random button multiple times
-    //clearSelection();  //this line does not work as React overrides multiple 'setState()' calls for same state, with just the latest one, instead of calling them all synchronously one after the other :(
-
     //Logic for randomNumArray to consists of 5 DISTINCT / NON-REPEATING numbers
     var randomNumArray = [];
     while (randomNumArray.length < 5) {
@@ -78,7 +74,7 @@ const App = () => {
       if (randomNumArray.indexOf(randNum) === -1) randomNumArray.push(randNum);
     }
 
-    let finalNumbers = allNumbers;
+    let finalNumbers = numArray;
     //setting highlight property of selected numbers
     for (let i = 0; i < randomNumArray.length; i++) {
       let index = randomNumArray[i];
@@ -91,6 +87,25 @@ const App = () => {
 
     setHighlightedNumbers(finalNumbers);
     setActiveNumbers(sideDisplayNumbers);
+  };
+
+  const displaySelection = () => {
+    if (total !== 0) {
+      let displayNumString = [];
+      activeNumbers.forEach((num) => {
+        displayNumString.push(num.value);
+      });
+
+      setModalDisplay({
+        message: `Numbers: ${displayNumString}, BET: $${total}`,
+        hidden: false,
+      });
+    } else {
+      setModalDisplay({
+        message: 'Bet price needs to be greater than 0',
+        hidden: false,
+      });
+    }
   };
 
   const dismissModal = () => {
@@ -111,7 +126,7 @@ const App = () => {
           onNumberClick={toggleNumberState}
           onClearClick={clearSelection}
           onRandomClick={randomizeSelection}
-          cashButtonState={isButtonActive}
+          onCashoutClick={displaySelection}
         />
         <SideDisplay displayNumbersArray={activeNumbers} totalAmount={total} />
       </main>

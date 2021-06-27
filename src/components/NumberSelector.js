@@ -19,11 +19,13 @@ const NumberSelector = (props) => {
         ))}
       </div>
       <div className='num-btn-container'>
-        <button className='num-rndm-btn' onClick={() => props.onRandomClick()}>
+        <button className='num-btn rndm-btn' onClick={() => props.onRandomClick()}>
           RANDOM
         </button>
-        <button className='num-cash-btn'>CASH</button>
-        <button className='num-clear-btn' onClick={() => props.onClearClick()}>
+        <button className='num-btn cashout-btn' onClick={() => props.onCashoutClick()}>
+          CASH OUT
+        </button>
+        <button className='num-btn clear-btn' onClick={() => props.onClearClick()}>
           CLEAR
         </button>
       </div>
