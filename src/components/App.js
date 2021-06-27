@@ -6,7 +6,7 @@ import PriceInput from './PriceInput';
 import Modal from './Modal';
 import SideDisplay from './SideDisplay';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const App = () => {
   const numArray = [];
@@ -56,7 +56,6 @@ const App = () => {
         message: 'Sorry, you can select only 5 numbers!',
         hidden: false,
       });
-      // alert('Sorry, you can select only 5 numbers!');
     }
   };
 

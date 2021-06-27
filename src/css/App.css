@@ -3,16 +3,24 @@
   margin: auto auto;
 }
 
-main {
-  height: 100%;
-  /* border: black 2px solid; */
-  display: grid;
-  grid-template-columns: 20% 50% 20%;
-  grid-gap: 15px;
+.header {
+  text-align: center;
+  font-size: x-large;
 }
 
+main {
+  margin: 20px auto;
+  height: 100%;
+  border: black 2px solid;
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 10px;
+  justify-content: space-around;
+}
+
+/* Number Selector */
 .num-slt-container {
-  /* border: black 2px solid; */
+  flex-grow: 2;
   height: 80%;
   display: grid;
   grid-template-rows: 90% 10%;
@@ -20,7 +28,6 @@ main {
 
 .num-container {
   padding-top: 10px;
-  border: black 2px solid;
   display: grid;
   grid-template-columns: repeat(5, 18%);
   grid-template-rows: repeat(4, 22%);
@@ -29,8 +36,7 @@ main {
 }
 
 .num-btn-container {
-  margin-top: 100px;
-  /* border: black 2px solid; */
+  margin-top: 60px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -66,18 +72,36 @@ main {
   transform: scale(0.9, 0.9);
 }
 
-.num-border {
+.num-highlight {
   border: rgb(0, 0, 0) 5px solid;
+  font-size: xx-large;
+  font-weight: bold;
 }
 
+.cashout-btn {
+  background-color: green;
+}
+
+.clear-btn,
+.rndm-btn {
+  background-color: red;
+}
+
+/* Side Display */
 .side-dsp-container {
-  border: black 2px solid;
+  flex-grow: 1;
+  border-left: black 2px solid;
   padding: 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.side-dsp-container p {
+  font-size: 1.2em;
+}
+
+/* Modal */
 .modal-container {
   position: absolute;
   width: 100%;
@@ -92,39 +116,47 @@ main {
 
 .modal {
   width: 500px;
+  border-radius: 20px;
   margin: 0 auto 200px auto;
   background-color: white;
   padding: 100px 30px;
   text-align: center;
+  font-size: 1.3em;
 }
 
 .hide {
   display: none;
 }
 
+/* Price Input */
 .price-btn-container {
+  height: 80%;
   padding: 10px;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  display: flex;
+  flex-direction: column;
 
   justify-content: space-evenly;
   align-self: center;
 }
 
 .price-container {
-  border: black 2px solid;
+  flex-grow: 1;
+  border-right: black 2px solid;
 }
 
+.price-container h3 {
+  text-align: center;
+}
 .price-btn {
-  background-color: #04c062;
+  background-color: #2190eb;
   border: none;
   color: white;
   padding: 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: x-large;
+  font-weight: bold;
   margin: 4px 2px;
   border-radius: 50%;
   transition: all 0.2s;
@@ -134,44 +166,11 @@ main {
   transform: scale(0.9, 0.9);
 }
 
-.cashout-btn {
-  background-color: green;
-}
-
-.clear-btn,
-.rndm-btn {
-  background-color: red;
-}
-/* default styles */
-/* .App {
-  text-align: center;
-} */
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-/* .App-link {
-  color: #61dafb;
-} */
 
 @keyframes App-logo-spin {
   from {

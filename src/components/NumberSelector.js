@@ -12,7 +12,7 @@ const NumberSelector = (props) => {
             onClick={() => {
               props.onNumberClick(num);
             }}
-            className={num.highlight ? 'num num-border' : 'num'}
+            className={num.highlight ? 'num num-highlight' : 'num'}
           >
             {num.value}
           </div>
